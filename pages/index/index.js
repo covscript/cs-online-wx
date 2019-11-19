@@ -6,9 +6,9 @@ Page({
   onLoad: function () {
     this.onRst()
   },
-  onRun: function () {
-    var ecode = Base64.encode(this.data.code)
-    var estdin = Base64.encode(this.data.stdin)
+  onRun: function (e) {
+    var ecode = Base64.encode(e.detail.value.code)
+    var estdin = Base64.encode(e.detail.value.stdin)
     var _this = this;
     wx.request({
       method: "POST",
@@ -17,14 +17,14 @@ Page({
         code: ecode,
         stdin: estdin
       },
-      success: function (data) {
+      success: function (res) {
         _this.setData({
-          stdout: data
+          stdout: res.data
         })
       },
-      fail: function (data) {
+      fail: function (res) {
         _this.setData({
-          stdout: "Error: " + data
+          stdout: "Error: " + res.data
         })
       }
     })
