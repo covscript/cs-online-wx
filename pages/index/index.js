@@ -4,7 +4,16 @@ const app = getApp()
 import { Base64 } from '../../app.js'
 Page({
   onLoad: function () {
-    this.onRst()
+    this.setData({
+      code:
+        "var end = system.in.input()\n" +
+        "foreach i in range(end)\n" +
+        "    system.out.println(i)\n" +
+        "end\n"
+      ,
+      stdin: "6",
+      stdout: ""
+    })
   },
   onRun: function (e) {
     var ecode = Base64.encode(e.detail.value.code)
@@ -31,8 +40,6 @@ Page({
   },
   onRst: function () {
     this.setData({
-      code: "system.out.println(\"Hello\")",
-      stdin: "",
       stdout: ""
     })
   }

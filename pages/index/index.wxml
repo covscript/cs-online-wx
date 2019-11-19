@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<form bindsubmit="onRun" bindreset="onRst">
+<form bindsubmit="onRun">
 <view class="container">
   <view class="code">
     <text>Covariant Script代码</text>
@@ -9,17 +9,13 @@
     <view class="input">
       <text>程序输入</text>
       <textarea name="stdin" class="text" value="{{stdin}}"/>
+      <button class="btn_run" form-type="submit">运行</button>
     </view>
     <view class="output">
       <text>程序输出</text>
       <textarea class="text" value="{{stdout}}" disabled="true"/>
+      <button class="btn_rst" bindtap="onRst">重置</button>
     </view>
-  </view>
-  <view class="code">
-    <button class="btn_run" form-type="submit">运行</button>
-  </view>
-  <view class="code">
-    <button form-type="reset">重置</button>
   </view>
 </view>
 </form>

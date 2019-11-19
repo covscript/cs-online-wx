@@ -16,10 +16,15 @@
   width: 100%;
   overflow: auto;
   word-break: break-all;
-  font-family: Consolas;
+  font-family: sans-serif;
   border: 1rpx grey;
   border-style: solid;
 }
 .btn_run {
   background-color: limegreen;
+  margin-top: 10rpx;
+}
+.btn_rst {
+  background-color:whitesmoke;
+  margin-top: 10rpx;
 }
