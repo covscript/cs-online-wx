@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="code">
+    <text>Covariant Script代码</text>
+    <textarea class="text" value="{{code}}" auto-focus="true"></textarea>
+  </view>
+  <view class="code">
+    <view class="input">
+      <text>程序输入</text>
+      <textarea class="text" value="{{stdin}}"></textarea>
+    </view>
+    <view class="output">
+      <text>程序输出</text>
+      <textarea class="text" value="{{stdout}}" disabled="true"></textarea>
+    </view>
+  </view>
+  <view class="code">
+    <button class="btn_run" bindtap="onRun">运行</button>
+  </view>
+  <view class="code">
+    <button bindtap="onRst">重置</button>
+  </view>
+</view>

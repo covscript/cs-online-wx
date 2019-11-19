@@ -1,0 +1,25 @@
+/**index.wxss**/
+.code {
+  float: left;
+  width: 90%;
+  margin-bottom: 10rpx;
+}
+.input {
+  float: left;
+  width: 48%;
+}
+.output {
+  float: right;
+  width: 48%;
+}
+.text {
+  width: 100%;
+  overflow: auto;
+  word-break: break-all;
+  font-family: Consolas;
+  border: 1rpx grey;
+  border-style: solid;
+}
+.btn_run {
+  background-color: limegreen;
+}
