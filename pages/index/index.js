@@ -21,7 +21,7 @@ Page({
     var _this = this;
     wx.request({
       method: "POST",
-      url: 'https://covscript.org.cn/cgi/cs-online',
+      url: 'https://dev.covariant.cn/cgi/cs-online',
       data: {
         code: ecode,
         stdin: estdin
