@@ -1,17 +1,19 @@
 //index.js
 //获取应用实例
-const app = getApp()
+
 import { Base64 } from '../../app.js'
 Page({
+  data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
   onLoad: function () {
     this.setData({
       code:
-        "var end = system.in.input()\n" +
-        "foreach i in range(end)\n" +
-        "    system.out.println(i)\n" +
-        "end\n"
+        "import codec.json as json\n" +
+        "var c = json.to_var(json.from_string(system.in.getline()))\n" +
+        "system.out.println(\"Hello, \" + c.username)\n"
       ,
-      stdin: "6",
+      stdin: "{\"username\":\"Michael\"}",
       stdout: ""
     })
   },
@@ -41,6 +43,15 @@ Page({
   onRst: function () {
     this.setData({
       stdout: ""
+    })
+  },
+  getUserInfo: function (){
+    var _this = this;
+    wx.getUserProfile({
+      desc: "同步您的昵称至程序输入框",
+      success: function (res){
+        _this.setData({stdin: "{\"username\":\"" + res.userInfo.nickName + "\"}"})
+      }
     })
   }
 })

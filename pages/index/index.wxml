@@ -2,7 +2,7 @@
 <form bindsubmit="onRun">
 <view class="container">
   <view class="code">
-    <text>Covariant Script代码</text>
+    <text>Covariant Script 代码</text>
     <textarea name="code" class="text" value="{{code}}" auto-focus="true"/>
   </view>
   <view class="code">
@@ -17,5 +17,7 @@
       <button class="btn_rst" bindtap="onRst">重置</button>
     </view>
   </view>
+  <button class="btn_getinfo" wx:if="{{canIUse}}" bindtap="getUserInfo">同步昵称</button>
+  <view wx:else>请升级微信版本以同步昵称</view>
 </view>
 </form>

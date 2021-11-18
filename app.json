@@ -8,6 +8,5 @@
     "navigationBarTitleText": "CovScript IDE",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
