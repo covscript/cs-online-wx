@@ -25,10 +25,18 @@
   margin-top: 10rpx;
 }
 .btn_rst {
-  background-color:#cc822e;
+  background-color:#ffd000;
   margin-top: 10rpx;
+}
+.show_btn_getinfo {
+  display: block;
+  float: left;
+  width: 90%;
+}
+.hide_btn_getinfo {
+  display: none
 }
 .btn_getinfo {
   background-color:limegreen;
-  width: 90%;
+  width: 100%;
 }

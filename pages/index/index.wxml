@@ -3,21 +3,23 @@
 <view class="container">
   <view class="code">
     <text>Covariant Script 代码</text>
-    <textarea name="code" class="text" value="{{code}}" auto-focus="true"/>
+    <textarea maxlength='-1' name="code" class="text" value="{{code}}" auto-focus="true" bindinput="textChanged"/>
   </view>
   <view class="code">
     <view class="input">
       <text>程序输入</text>
-      <textarea name="stdin" class="text" value="{{stdin}}"/>
+      <textarea maxlength='-1' name="stdin" class="text" value="{{stdin}}"/>
       <button class="btn_run" form-type="submit">运行</button>
     </view>
     <view class="output">
       <text>程序输出</text>
-      <textarea class="text" value="{{stdout}}" disabled="true"/>
+      <textarea maxlength='-1' class="text" value="{{stdout}}" disabled="true"/>
       <button class="btn_rst" bindtap="onRst">重置</button>
     </view>
   </view>
-  <button class="btn_getinfo" wx:if="{{canIUse}}" bindtap="getUserInfo">同步昵称</button>
-  <view wx:else>请升级微信版本以同步昵称</view>
+  <view class="{{showGetInfo?'show_btn_getinfo':'hide_btn_getinfo'}}">
+    <button class="btn_getinfo" wx:if="{{canIUse}}" bindtap="getUserInfo">同步昵称</button>
+    <view wx:else>请升级微信版本以同步昵称</view>
+  </view>
 </view>
 </form>

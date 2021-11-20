@@ -1,20 +1,62 @@
 //index.js
 //获取应用实例
 
-import { Base64 } from '../../app.js'
+import {
+  Base64
+} from '../../app.js'
+
+var default_code = "import codec.json as json\n" +
+  "var c = json.to_var(json.from_string(system.in.getline()))\n" +
+  "system.out.println(\"Hello, \" + c.username)\n"
+
+var default_stdin = "{\"username\":\"Michael\"}"
+
 Page({
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    showGetInfo: false
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    if (options.scene) {
+      var _this = this
+      var id = decodeURIComponent(options.scene)
+      wx.request({
+        method: "POST",
+        url: 'https://dev.covariant.cn/cgi/cs-online-getcode',
+        data: id,
+        success: function (res) {
+          if (res.data) {
+            _this.setData({
+              code: Base64.decode(res.data.code),
+              stdin: Base64.decode(res.data.stdin)
+            })
+          } else {
+            _this.setData({
+              code: default_code,
+              stdin: default_stdin,
+              showGetInfo: true
+            })
+          }
+        },
+        fail: function (res) {
+          _this.setData({
+            code: default_code,
+            stdin: default_stdin,
+            showGetInfo: true
+          })
+        }
+      })
+    } else {
+      this.setData({
+        code: default_code,
+        stdin: default_stdin,
+        showGetInfo: true
+      })
+    }
+  },
+  textChanged: function (e) {
     this.setData({
-      code:
-        "import codec.json as json\n" +
-        "var c = json.to_var(json.from_string(system.in.getline()))\n" +
-        "system.out.println(\"Hello, \" + c.username)\n"
-      ,
-      stdin: "{\"username\":\"Michael\"}",
-      stdout: ""
+      showGetInfo: false
     })
   },
   onRun: function (e) {
@@ -42,15 +84,20 @@ Page({
   },
   onRst: function () {
     this.setData({
-      stdout: ""
+      code: default_code,
+      stdin: default_stdin,
+      stdout: "",
+      showGetInfo: true
     })
   },
-  getUserInfo: function (){
+  getUserInfo: function () {
     var _this = this;
     wx.getUserProfile({
       desc: "同步您的昵称至程序输入框",
-      success: function (res){
-        _this.setData({stdin: "{\"username\":\"" + res.userInfo.nickName + "\"}"})
+      success: function (res) {
+        _this.setData({
+          stdin: "{\"username\":\"" + res.userInfo.nickName + "\"}"
+        })
       }
     })
   }
